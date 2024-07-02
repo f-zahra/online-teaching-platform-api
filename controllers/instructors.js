@@ -4,7 +4,38 @@ const asyncHandler = require("../middleware/async");
 
 //get all instructors
 exports.getInstructors = asyncHandler(async (req, res) => {
-  const instructors = await Instructor.find();
+  //fields to exclude
+  let query;
+  const reqQuery = { ...req.query };
+  const removeFields = ["select, sort"];
+  removeFields.forEach((param) => delete reqQuery[param]);
+
+  let queryStr = JSON.stringify(reqQuery);
+  queryStr = queryStr.replace(
+    /\b(gt|gte|lt|lte|in)\b/g,
+    (match) => `$${match}`
+  );
+
+  //finding ressources
+  query = Instructor.find(JSON.parse(queryStr));
+
+  //select fields
+  if (req.query.select) {
+    const fields = req.query.select.split(",").join(" ");
+    query = query.select(fields);
+  }
+
+  //sorting
+  if (req.query.sort) {
+    const sortBy = req.query.sort.split(",").join(" ");
+    query = query.sort(fields);
+  } else {
+    //sorted by rating as default
+    query = query.sort({ averageRating: -1 });
+  }
+
+  //execute query
+  const instructors = await query;
 
   res.status(200).json({
     success: true,
