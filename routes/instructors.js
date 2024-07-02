@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   getInstructors,
+  getInstructorById,
   addInstructor,
   updateInstructor,
   deleteInstructor,
@@ -8,7 +9,10 @@ const {
 const router = express.Router();
 
 router.route("/").get(getInstructors).post(addInstructor);
-router.route("/:id").put(updateInstructor).delete(deleteInstructor);
+router
+  .route("/:id")
+  .get(getInstructorById)
+  .put(updateInstructor)
+  .delete(deleteInstructor);
 
-router.route;
 module.exports = router;

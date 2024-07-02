@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const connectDB = require("./config/db");
+const errorHandler = require("./middleware/error");
 
 //load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -25,6 +26,8 @@ const instructorsRoutes = require("./routes/instructors");
 
 app.use("/api/v1/instructors", instructorsRoutes);
 
+//error middleware
+app.use(errorHandler);
 //PORT var
 const PORT = process.env.PORT || 8080;
 
