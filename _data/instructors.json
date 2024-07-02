@@ -1,0 +1,62 @@
+[
+  {
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "mysecurepassword123",
+    "bio": "Experienced full-stack developer with a passion for building scalable web applications.",
+    "expertise": ["Mobile Development", "UI/UX"],
+    "photo": "profile-photo.jpg",
+    "website": "https://www.johndoe.com",
+    "social": {
+      "twitter": "https://twitter.com/johndoe",
+      "linkedin": "https://linkedin.com/in/johndoe",
+      "github": "https://github.com/johndoe"
+    },
+    "averageRating": 8.5
+  },
+  {
+    "name": "Alice Johnson",
+    "email": "alicejohnson@example.com",
+    "password": "strongpassword789",
+    "bio": "Passionate front-end developer specializing in responsive web design.",
+    "expertise": ["Mobile Development", "UI/UX"],
+    "photo": "avatar.jpg",
+    "website": "https://www.alicejohnson.com",
+    "social": {
+      "twitter": "https://twitter.com/alicejohnson",
+      "linkedin": "https://linkedin.com/in/alicejohnson",
+      "github": "https://github.com/alicejohnson"
+    },
+    "averageRating": 9.2
+  },
+  {
+    "name": "Mark Smith",
+    "email": "marksmith@example.com",
+    "password": "password123",
+    "bio": "Backend developer with a focus on building robust APIs.",
+    "expertise": ["Mobile Development", "UI/UX"],
+    "photo": "profile-pic.png",
+    "website": "https://www.marksmith.com",
+    "social": {
+      "twitter": "https://twitter.com/marksmith",
+      "linkedin": "https://linkedin.com/in/marksmith",
+      "github": "https://github.com/marksmith"
+    },
+    "averageRating": 8.7
+  },
+  {
+    "name": "Emily Brown",
+    "email": "emilybrown@example.com",
+    "password": "emilyspassword",
+    "bio": "Full-stack developer passionate about creating innovative web applications.",
+    "expertise": ["Mobile Development", "UI/UX"],
+    "photo": "user-photo.jpg",
+    "website": "https://www.emilybrown.com",
+    "social": {
+      "twitter": "https://twitter.com/emilybrown",
+      "linkedin": "https://linkedin.com/in/emilybrown",
+      "github": "https://github.com/emilybrown"
+    },
+    "averageRating": 9.5
+  }
+]
