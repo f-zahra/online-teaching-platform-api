@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slugify = require("slugify");
 
 const InstructorSchema = new mongoose.Schema({
   name: {
@@ -92,6 +93,11 @@ const InstructorSchema = new mongoose.Schema({
     min: [1, "Rating must be at least 1"],
     max: [10, "Rating can not be more than 10"],
   },
+});
+
+InstructorSchema.pre("save", function (next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
 });
 
 module.exports = mongoose.model("Instructor", InstructorSchema);
