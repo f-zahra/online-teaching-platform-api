@@ -17,7 +17,10 @@ exports.getInstructors = asyncHandler(async (req, res) => {
   );
 
   //finding ressources
-  query = Instructor.find(JSON.parse(queryStr));
+  query = Instructor.find(JSON.parse(queryStr)).populate({
+    path: "courses",
+    select: "title description price",
+  });
 
   //select fields
   if (req.query.select) {
@@ -118,7 +121,7 @@ exports.updateInstructor = asyncHandler(async (req, res, next) => {
 //delete instructor by id
 exports.deleteInstructor = asyncHandler(async (req, res, next) => {
   try {
-    const instructor = await Instructor.findByIdAndDelete(req.params.id);
+    const instructor = await Instructor.findById(req.params.id);
 
     if (!instructor) {
       return next(
@@ -128,6 +131,9 @@ exports.deleteInstructor = asyncHandler(async (req, res, next) => {
         )
       );
     }
+
+    instructor.deleteOne();
+
     res.status(200).json({ success: true, data: {} });
   } catch (error) {
     next(error);
