@@ -5,6 +5,7 @@ const fs = require("fs");
 dotenv.config({ path: "./config/config.env" });
 //load model
 const Instructor = require("./models/Instructor");
+const Course = require("./models/Course");
 //connect to db
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -18,11 +19,16 @@ mongoose
 const instructors = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/instructors.json`, "utf-8")
 );
+const courses = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/courses.json`, "utf-8")
+);
 //import into db async and exit sys
 const addData = async () => {
   try {
     await Instructor.create(instructors);
+    await Course.create(courses);
     console.log("data added");
+    process.exit();
   } catch (error) {
     console.log(error);
   }
@@ -32,7 +38,9 @@ const addData = async () => {
 const deleteData = async () => {
   try {
     await Instructor.deleteMany();
+    await Course.deleteMany();
     console.log("data deleted");
+    process.exit();
   } catch (error) {
     console.log(error);
   }

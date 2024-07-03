@@ -1,0 +1,42 @@
+[
+  {
+    "title": "JavaScript Basics",
+    "instructor": "66844a546e59fc5945b90e09",
+    "description": "Learn the fundamentals of JavaScript programming.",
+    "price": 49,
+    "duration": "4 weeks",
+    "category": "Programming",
+    "level": "Beginner",
+    "studentsEnrolled": 120
+  },
+  {
+    "title": "Advanced React Development",
+    "instructor": "66844a546e59fc5945b90e09",
+    "description": "Master advanced techniques in React development.",
+    "price": 79,
+    "duration": "6 weeks",
+    "category": "Web Development",
+    "level": "Advanced",
+    "studentsEnrolled": 80
+  },
+  {
+    "title": "Data Science Foundations",
+    "instructor": "66844a546e59fc5945b90e09",
+    "description": "Introduction to the principles of data science.",
+    "price": 59,
+    "duration": "5 weeks",
+    "category": "Data Science",
+    "level": "Intermediate",
+    "studentsEnrolled": 150
+  },
+  {
+    "title": "Python for Machine Learning",
+    "instructor": "66844a546e59fc5945b90e0c",
+    "description": "Learn Python programming specifically for machine learning applications.",
+    "price": 69,
+    "duration": "8 weeks",
+    "category": "Machine Learning",
+    "level": "Intermediate",
+    "studentsEnrolled": 100
+  }
+]

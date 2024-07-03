@@ -82,12 +82,12 @@ const InstructorSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  //   courses: [
-  //     {
-  //       type: mongoose.Schema.ObjectId,
-  //       ref: "Course",
-  //     },
-  //   ],
+  courses: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Course",
+    },
+  ],
   averageRating: {
     type: Number,
     min: [1, "Rating must be at least 1"],
