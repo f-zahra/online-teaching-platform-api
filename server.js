@@ -23,8 +23,10 @@ if (process.env.NODE_ENV === "developement") {
 
 //import routes
 const instructorsRoutes = require("./routes/instructors");
+const coursesRoutes = require("./routes/courses");
 
 app.use("/api/v1/instructors", instructorsRoutes);
+app.use("/api/v1/courses", coursesRoutes);
 
 //error middleware
 app.use(errorHandler);
