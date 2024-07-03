@@ -2,6 +2,7 @@
 const Course = require("../models/Course");
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
+const Instructor = require("../models/Instructor");
 
 //get all courses
 exports.getCourses = asyncHandler(async (req, res) => {
@@ -20,11 +21,6 @@ exports.getCourses = asyncHandler(async (req, res) => {
   //execute query
   const courses = await query;
 
-  //handle error if not found
-  if (!courses) {
-    return next(new ErrorResponse(400, ` oopsie`));
-  }
-
   //server response
   res.status(200).json({
     success: true,
@@ -34,3 +30,50 @@ exports.getCourses = asyncHandler(async (req, res) => {
 });
 
 //get single course
+exports.getCourse = asyncHandler(async (req, res, next) => {
+  //execute query
+  const course = await Course.findById(req.params.id);
+
+  if (!course) {
+    return next(
+      new ErrorResponse(
+        400,
+        `Course with the id ${req.params.id} was not found`
+      )
+    );
+  }
+
+  //server response
+  res.status(200).json({
+    success: true,
+    data: course,
+  });
+});
+
+//TODO add course
+exports.addCourse = asyncHandler(async (req, res, next) => {
+  //get the instructor path ref from the req param
+  req.body.instructor = req.params.instructorId;
+
+  //find the instructor
+  const instructor = Instructor.findById(req.params.instructorId);
+
+  if (!instructor) {
+    return next(
+      new ErrorResponse(
+        400,
+        `Instructor with id ${req.params.instructorId} does not exist`
+      )
+    );
+  }
+  //create the course
+  const course = await Course.create(req.body);
+
+  //server response
+  res.status(201).json({
+    success: true,
+    data: course,
+  });
+});
+
+//TODO delete course
