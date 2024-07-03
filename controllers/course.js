@@ -50,7 +50,7 @@ exports.getCourse = asyncHandler(async (req, res, next) => {
   });
 });
 
-//TODO add course
+// add course
 exports.addCourse = asyncHandler(async (req, res, next) => {
   //get the instructor path ref from the req param
   req.body.instructor = req.params.instructorId;
@@ -76,4 +76,28 @@ exports.addCourse = asyncHandler(async (req, res, next) => {
   });
 });
 
-//TODO delete course
+//update course
+exports.updateCourse = asyncHandler(async (req, res, next) => {
+  //find course
+  const course = await Course.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!course) {
+    return next(
+      new ErrorResponse(
+        400,
+        `course with the id ${req.params.id} was not found`
+      )
+    );
+  }
+
+  //server response
+  res.status(200).json({
+    success: true,
+    data: course,
+  });
+});
+
+// delete course
