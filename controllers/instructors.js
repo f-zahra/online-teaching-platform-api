@@ -132,7 +132,7 @@ exports.deleteInstructor = asyncHandler(async (req, res, next) => {
       );
     }
 
-    instructor.deleteOne();
+    await instructor.deleteOne();
 
     res.status(200).json({ success: true, data: {} });
   } catch (error) {

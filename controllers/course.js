@@ -101,3 +101,22 @@ exports.updateCourse = asyncHandler(async (req, res, next) => {
 });
 
 // delete course
+exports.deleteCourse = asyncHandler(async (req, res, next) => {
+  //find course
+  const course = await Course.findById(req.params.id);
+  if (!course) {
+    return next(
+      new ErrorResponse(
+        400,
+        `course with the id ${req.params.id} was not found`
+      )
+    );
+  }
+
+  await course.deleteOne();
+  //server response
+  res.status(200).json({
+    success: true,
+    data: {},
+  });
+});
