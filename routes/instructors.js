@@ -6,7 +6,13 @@ const {
   updateInstructor,
   deleteInstructor,
 } = require("../controllers/instructors");
+
+//import course router
+const courseRouter = require("./courses");
 const router = express.Router();
+
+//re-route into course router
+router.use("/:instructorId/courses", courseRouter);
 
 router.route("/").get(getInstructors).post(addInstructor);
 router
