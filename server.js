@@ -36,11 +36,12 @@ app.use(
 //import routers
 const instructorsRoutes = require("./routes/instructors");
 const coursesRoutes = require("./routes/courses");
+const authRouter = require("./routes/authRoute");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/api/v1/instructors", instructorsRoutes);
 app.use("/api/v1/courses", coursesRoutes);
-
+app.use("/api/v1/user", authRouter);
 //error middleware
 app.use(errorHandler);
 //PORT var
