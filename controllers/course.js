@@ -6,16 +6,17 @@ const Instructor = require("../models/Instructor");
 
 //get all courses
 exports.getCourses = asyncHandler(async (req, res) => {
-  //finding resources
-  let query;
   //get courses per instructor
   if (req.params.instructorId) {
-    query = Course.find({ instructor: req.params.instructorId });
-  } else {
-    query = Course.find().populate({
-      path: "instructor",
-      select: "name expertise",
+    const InstructorCourses = Course.find({
+      instructor: req.params.instructorId,
     });
+    res.status(200).json({
+      success: true,
+      data: InstructorCourses,
+    });
+  } else {
+    res.status(200).json(res.advancedResult);
   }
 
   //execute query

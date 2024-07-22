@@ -11,8 +11,7 @@
       "twitter": "https://twitter.com/johndoe",
       "linkedin": "https://linkedin.com/in/johndoe",
       "github": "https://github.com/johndoe"
-    },
-    "averageRating": 8.5
+    }
   },
   {
     "name": "Alice Johnson",
@@ -26,8 +25,7 @@
       "twitter": "https://twitter.com/alicejohnson",
       "linkedin": "https://linkedin.com/in/alicejohnson",
       "github": "https://github.com/alicejohnson"
-    },
-    "averageRating": 9.2
+    }
   },
   {
     "name": "Mark Smith",
@@ -41,8 +39,7 @@
       "twitter": "https://twitter.com/marksmith",
       "linkedin": "https://linkedin.com/in/marksmith",
       "github": "https://github.com/marksmith"
-    },
-    "averageRating": 8.7
+    }
   },
   {
     "name": "Emily Brown",
@@ -56,7 +53,6 @@
       "twitter": "https://twitter.com/emilybrown",
       "linkedin": "https://linkedin.com/in/emilybrown",
       "github": "https://github.com/emilybrown"
-    },
-    "averageRating": 9.5
+    }
   }
 ]

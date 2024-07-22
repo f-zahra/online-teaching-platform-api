@@ -7,8 +7,20 @@ const {
   deleteCourse,
 } = require("../controllers/course");
 
+//import advancedResult middleware
+const advancedResult = require("../middleware/advancedResult");
+const CourseModel = require("../models/Course");
 //route /v1/instructors/:instructorId/courses
 const router = express.Router({ mergeParams: true });
-router.route("/").get(getCourses).post(addCourse);
+router
+  .route("/")
+  .get(
+    advancedResult(CourseModel, {
+      path: "instructor",
+      select: "name expertise",
+    }),
+    getCourses
+  )
+  .post(addCourse);
 router.route("/:id").get(getCourse).put(updateCourse).delete(deleteCourse);
 module.exports = router;

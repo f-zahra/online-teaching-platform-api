@@ -1,7 +1,7 @@
 [
   {
     "title": "JavaScript Basics",
-    "instructor": "66844a546e59fc5945b90e09",
+    "instructor": "669e6c73d8555878d914d7fe",
     "description": "Learn the fundamentals of JavaScript programming.",
     "price": 49,
     "duration": "4 weeks",
@@ -11,7 +11,7 @@
   },
   {
     "title": "Advanced React Development",
-    "instructor": "66844a546e59fc5945b90e09",
+    "instructor": "669e6c73d8555878d914d7fe",
     "description": "Master advanced techniques in React development.",
     "price": 79,
     "duration": "6 weeks",
@@ -21,7 +21,7 @@
   },
   {
     "title": "Data Science Foundations",
-    "instructor": "66844a546e59fc5945b90e09",
+    "instructor": "669e6c73d8555878d914d7fe",
     "description": "Introduction to the principles of data science.",
     "price": 59,
     "duration": "5 weeks",
@@ -31,7 +31,7 @@
   },
   {
     "title": "Python for Machine Learning",
-    "instructor": "66844a546e59fc5945b90e0c",
+    "instructor": "669e6c73d8555878d914d801",
     "description": "Learn Python programming specifically for machine learning applications.",
     "price": 69,
     "duration": "8 weeks",
