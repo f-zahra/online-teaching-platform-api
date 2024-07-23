@@ -22,7 +22,8 @@ exports.userRegistration = async (req, res, next) => {
   }
 };
 
-//user login
+//@desc user login
+//@route POST /api/v1/user-registration
 exports.userLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -30,13 +31,13 @@ exports.userLogin = async (req, res, next) => {
     // Find the user by email
     const user = await User.findOne({ email });
     if (!user) {
-      return next(400, " 'Invalid email or password' ");
+      return next(new ErrorResponse(401, "Invalid email or password"));
     }
 
     // Compare the provided password with the stored hashed password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return next(400, " 'Invalid email or password' ");
+      return next(new ErrorResponse(401, "Invalid email or password"));
     }
 
     // Generate a JWT token
@@ -49,15 +50,24 @@ exports.userLogin = async (req, res, next) => {
     );
 
     // Send the token to the client
-    res.status(200).json({
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-      },
-    });
+    res
+      .status(200)
+      .cookie("Token", token, {
+        maxAge: 3600000,
+        httpOnly: true, // Prevent access via JavaScript
+        secure: true, // Only send cookie over HTTPS
+        sameSite: "Strict", // Control cross-site request
+      })
+      .json({
+        success: true,
+        token,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        },
+      });
   } catch (err) {
     next(err);
   }
