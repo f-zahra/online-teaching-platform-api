@@ -1,4 +1,5 @@
 const express = require("express");
+const validateToken = require("../middleware/tokenValidation");
 const {
   getCourses,
   getCourse,
@@ -15,6 +16,7 @@ const router = express.Router({ mergeParams: true });
 router
   .route("/")
   .get(
+    validateToken,
     advancedResult(CourseModel, {
       path: "instructor",
       select: "name expertise",
