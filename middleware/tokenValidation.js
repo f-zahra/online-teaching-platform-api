@@ -3,6 +3,7 @@ const User = require("../models/User");
 
 const validateToken = async (req, res, next) => {
   // Get token from Authorization header
+
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ message: "Unauthorized: No token provided" });

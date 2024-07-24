@@ -72,3 +72,21 @@ exports.userLogin = async (req, res, next) => {
     next(err);
   }
 };
+
+//@desc get current logged in user
+//@route GET /api/v1/auth/me
+exports.currentLoggedUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return next(new ErrorResponse(400, "no user connected"));
+    }
+
+    res.status(200).json({
+      success: true,
+      user: user,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
