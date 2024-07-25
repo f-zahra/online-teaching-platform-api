@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-const validateToken = async (req, res, next) => {
+exports.validateToken = async (req, res, next) => {
   // Get token from Authorization header
 
   const authHeader = req.headers.authorization;
@@ -22,4 +22,13 @@ const validateToken = async (req, res, next) => {
   }
 };
 
-module.exports = validateToken;
+exports.authorize = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({
+        message: `Role ${req.user.role} is not authorized to access this resource`,
+      });
+    }
+    next();
+  };
+};

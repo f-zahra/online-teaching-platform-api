@@ -1,4 +1,5 @@
 const express = require("express");
+const { validateToken, authorize } = require("../middleware/protect");
 const {
   getInstructors,
   getInstructorById,
@@ -18,15 +19,17 @@ const InstructorModel = require("../models/Instructor");
 const advancedResult = require("../middleware/advancedResult");
 //re-route into course router
 router.use("/:instructorId/courses", courseRouter);
-router.route("/:id/photo").put(instructorPhotoUpload);
+router
+  .route("/:id/photo")
+  .put(validateToken, authorize("admin", "publisher"), instructorPhotoUpload);
 router
   .route("/")
   .get(advancedResult(InstructorModel), getInstructors)
-  .post(addInstructor);
+  .post(validateToken, authorize("admin", "publisher"), addInstructor);
 router
   .route("/:id")
   .get(getInstructorById)
-  .put(updateInstructor)
-  .delete(deleteInstructor);
+  .put(validateToken, authorize("publisher", "admin"), updateInstructor)
+  .delete(validateToken, authorize("admin"), deleteInstructor);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const express = require("express");
-const validateToken = require("../middleware/tokenValidation");
+const { validateToken, authorize } = require("../middleware/protect");
 const {
   getCourses,
   getCourse,
@@ -23,6 +23,10 @@ router
     }),
     getCourses
   )
-  .post(addCourse);
-router.route("/:id").get(getCourse).put(updateCourse).delete(deleteCourse);
+  .post(validateToken, authorize("publisher", "admin"), addCourse);
+router
+  .route("/:id")
+  .get(getCourse)
+  .put(validateToken, authorize("publisher", "admin"), updateCourse)
+  .delete(validateToken, authorize("publisher", "admin"), deleteCourse);
 module.exports = router;

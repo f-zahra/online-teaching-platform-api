@@ -1,5 +1,5 @@
 const express = require("express");
-const validateToken = require("../middleware/tokenValidation");
+const { validateToken } = require("../middleware/protect");
 
 const {
   userRegistration,
